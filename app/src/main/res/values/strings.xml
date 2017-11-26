@@ -2,4 +2,7 @@
     <string name="app_name">NewsFeed</string>
     <string name="net_status">No Internet Connection.</string>
     <string name="empty_list">No news found.</string>
+    <string name="menu_refresh">Refresh news</string>
+    <string name="attribution">News by The Guardian</string>
+
 </resources>
