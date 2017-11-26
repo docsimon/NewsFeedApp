@@ -181,4 +181,13 @@ public final class Utils {
         // Return the list of News
         return news;
     }
+
+    /*
+    This methos get a row date string and formatit with date and hours
+     */
+    public static String[] formatDate(String date){
+        String[] tmpDate = date.split("T");
+        tmpDate[1] = tmpDate[1].replaceAll("Z", "");
+        return tmpDate;
+    }
 }
