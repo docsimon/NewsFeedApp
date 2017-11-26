@@ -9,7 +9,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -44,13 +43,8 @@ public class NewsAdapter extends ArrayAdapter<News> {
         TextView newsTitle = (TextView) callingListView.findViewById(R.id.newsTitle);
         newsTitle.setText((news.getTitle()));
 
-        // reference to the author
-        TextView author = (TextView) callingListView.findViewById(R.id.author);
-        author.setText(news.getAuthor());
-
         // get the date array which contains date at index [0] and time at index [1]
         String[] newsDate = Utils.formatDate(news.getDate());
-
 
         // reference to the date
         TextView date = (TextView) callingListView.findViewById(R.id.date);

@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -24,7 +23,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements LoaderCallbacks<List<News>>, SwipeRefreshLayout.OnRefreshListener{
+public class MainActivity extends AppCompatActivity implements LoaderCallbacks<List<News>>, SwipeRefreshLayout.OnRefreshListener {
 
     LoaderManager loaderManager;
     private static final int NEWS_LOADER_ID = 1;
@@ -34,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     private static final String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?api-key=***REMOVED***e417";
     private String queryString = "";
     SwipeRefreshLayout swipeRefreshLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,14 +41,6 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         swipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swiperefresh);
         swipeRefreshLayout.setOnRefreshListener(this);
         queryString = NEWS_REQUEST_URL;
-        // Check network connection
-        ConnectivityManager cm =
-                (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
-
-        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        boolean isConnected = activeNetwork != null &&
-                activeNetwork.isConnectedOrConnecting();
-
 
         // create an instance of empty view
         emptyView = (TextView) findViewById(R.id.empty_view);
@@ -56,14 +48,14 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         final ListView newsListView = (ListView) findViewById(R.id.list);
         newsListView.setEmptyView(emptyView);
 
-        if (!isConnected) {
+        if (!checkNetwork()) {
             String net_problem = getString(R.string.net_status);
             emptyView.setText(net_problem);
             progressBar = (ProgressBar) findViewById(R.id.loading_spinner);
             progressBar.setVisibility(View.GONE);
 
-        }{
-
+        }else
+        {
             // Get a reference to the LoaderManager, in order to interact with loaders.
             loaderManager = getLoaderManager();
 
@@ -131,6 +123,10 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         newsAdapter.clear();
     }
 
+    /*
+    Swipe Refresh methods
+     */
+
     @Override
     public void onRefresh() {
 
@@ -139,10 +135,13 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
         refreshNews();
     }
 
-    private void refreshNews(){
+    private void refreshNews() {
         Log.v("Update called", "New refresh request");
-        loaderManager.restartLoader(NEWS_LOADER_ID, null, this);
+        finish();
+        startActivity(getIntent());
+
     }
+
     /*
  * Listen for option item selections so that we receive a notification
  * when the user requests a refresh by selecting the refresh action bar item.
@@ -161,12 +160,23 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
                 // Start the refresh background task.
                 // This method calls setRefreshing(false) when it's finished.
                 refreshNews();
-
                 return true;
         }
 
         // User didn't trigger a refresh, let the superclass handle this action
         return super.onOptionsItemSelected(item);
+
+    }
+
+    private boolean checkNetwork(){
+
+        // Check network connection
+        ConnectivityManager cm =
+                (ConnectivityManager) this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        return activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
 
     }
 }

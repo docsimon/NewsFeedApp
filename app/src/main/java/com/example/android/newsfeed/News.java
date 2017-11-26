@@ -7,39 +7,36 @@ package com.example.android.newsfeed;
 public class News {
     private String title;
     private String section;
-    private String author;
     private String date;
     private String url;
 
     /*
     Public constructor
      */
-    public News(String title, String section, String author, String date, String url){
+    public News(String title, String section, String date, String url) {
         this.title = title;
         this.section = section;
-        this.author = author;
         this.date = date;
         this.url = url;
-
     }
 
     /*
     Getters
      */
 
-    public String getTitle(){
+    public String getTitle() {
         return this.title;
     }
-    public String getSection(){
+
+    public String getSection() {
         return this.section;
     }
-    public String getAuthor(){
-        return this.author;
-    }
-    public String getDate(){
+
+    public String getDate() {
         return this.date;
     }
-    public String getUrl(){
+
+    public String getUrl() {
         return this.url;
     }
 }

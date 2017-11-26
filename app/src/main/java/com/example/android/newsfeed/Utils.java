@@ -32,10 +32,8 @@ public final class Utils {
     private static final int HTTP_SUCCESS = 200;
     private static final String KEY_TITLE = "webTitle";
     private static final String KEY_SECTIONNAME = "sectionName";
-    private static final String KEY_AUTHORS = "authors";
     private static final String KEY_URL = "webUrl";
     private static final String KEY_DATE = "webPublicationDate";
-
 
     /**
      * Create a private constructor because no one should ever create a {@link Utils} object.
@@ -46,7 +44,6 @@ public final class Utils {
     private Utils() {
 
     }
-
 
     /**
      * Returns new URL object from the given string URL.
@@ -142,7 +139,6 @@ public final class Utils {
         // is formatted, a JSONException exception object will be thrown.
         // Catch the exception so the app doesn't crash, and print the error message to the logs.
         try {
-            String authors = "";
             JSONObject jsonFile = new JSONObject(jsonResponse);
             JSONObject newsObject = jsonFile.optJSONObject("response");
 
@@ -163,11 +159,8 @@ public final class Utils {
                     String title = singleNews.getString(KEY_TITLE);
                     String url = singleNews.getString(KEY_URL);
                     String date = singleNews.getString(KEY_DATE);
-                    String author = "";
-                    if (singleNews.has(KEY_AUTHORS)) {
-                        author = singleNews.getString(KEY_AUTHORS);
-                    }
-                    news.add(new News(title, sectionName, author ,date , url));
+
+                    news.add(new News(title, sectionName ,date , url));
                 }
             }
 

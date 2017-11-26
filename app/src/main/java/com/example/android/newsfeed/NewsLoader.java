@@ -9,7 +9,6 @@ import java.util.List;
  * Created by doc on 26/11/2017.
  */
 
-
 /**
  * Loads a list of books by using an AsyncTask to perform the
  * network request to the given URL.
