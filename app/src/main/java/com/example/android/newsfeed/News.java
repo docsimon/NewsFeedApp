@@ -9,15 +9,17 @@ public class News {
     private String section;
     private String date;
     private String url;
+    private String contributors;
 
     /*
     Public constructor
      */
-    public News(String title, String section, String date, String url) {
+    public News(String title, String section, String date, String url, String contributors) {
         this.title = title;
         this.section = section;
         this.date = date;
         this.url = url;
+        this.contributors = contributors;
     }
 
     /*
@@ -38,5 +40,9 @@ public class News {
 
     public String getUrl() {
         return this.url;
+    }
+
+    public String getContributors() {
+        return this.contributors;
     }
 }

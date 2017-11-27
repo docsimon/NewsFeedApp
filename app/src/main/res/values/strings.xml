@@ -4,5 +4,7 @@
     <string name="empty_list">No news found.</string>
     <string name="menu_refresh">Refresh news</string>
     <string name="attribution">News by The Guardian</string>
+    <string name="contributors">Contributors: </string>
+
 
 </resources>

@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     NewsAdapter newsAdapter;
     TextView emptyView;
     ProgressBar progressBar;
-    private static final String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?api-key=***REMOVED***e417";
+    private static final String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?show-tags=contributor&api-key=***REMOVED***e417";
     private String queryString = "";
     SwipeRefreshLayout swipeRefreshLayout;
 
@@ -54,8 +54,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
             progressBar = (ProgressBar) findViewById(R.id.loading_spinner);
             progressBar.setVisibility(View.GONE);
 
-        }else
-        {
+        } else {
             // Get a reference to the LoaderManager, in order to interact with loaders.
             loaderManager = getLoaderManager();
 
@@ -168,7 +167,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
 
     }
 
-    private boolean checkNetwork(){
+    private boolean checkNetwork() {
 
         // Check network connection
         ConnectivityManager cm =

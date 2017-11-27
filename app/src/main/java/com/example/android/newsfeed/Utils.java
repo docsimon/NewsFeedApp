@@ -34,6 +34,9 @@ public final class Utils {
     private static final String KEY_SECTIONNAME = "sectionName";
     private static final String KEY_URL = "webUrl";
     private static final String KEY_DATE = "webPublicationDate";
+    private static final String KEY_TAGS = "tags";
+    private static final String KEY_CONTRIBUTOR = "webTitle";
+
 
     /**
      * Create a private constructor because no one should ever create a {@link Utils} object.
@@ -152,7 +155,7 @@ public final class Utils {
                 for (int i = 0; i < results.length(); i++) {
 
                     /**
-                     * get the section, title,  author, date and url
+                     * get the section, title,  author, date, url and contributors
                      */
                     JSONObject singleNews = results.getJSONObject(i);
                     String sectionName = singleNews.getString(KEY_SECTIONNAME);
@@ -160,7 +163,18 @@ public final class Utils {
                     String url = singleNews.getString(KEY_URL);
                     String date = singleNews.getString(KEY_DATE);
 
-                    news.add(new News(title, sectionName ,date , url));
+                    /*
+                    get Contributors
+                     */
+                    JSONArray tags = singleNews.getJSONArray(KEY_TAGS);
+                    List<String> contributors = new ArrayList<>();
+                    if (tags != null) {
+                        for (int j = 0; j < tags.length(); j++) {
+                            JSONObject singleTag = tags.getJSONObject(j);
+                            contributors.add(singleTag.optString(KEY_CONTRIBUTOR));
+                        }
+                    }
+                    news.add(new News(title, sectionName, date, url, String.join(", ", contributors)));
                 }
             }
 
@@ -176,9 +190,9 @@ public final class Utils {
     }
 
     /*
-    This methos get a row date string and formatit with date and hours
+    This method get a row date string and formatit with date and hours
      */
-    public static String[] formatDate(String date){
+    public static String[] formatDate(String date) {
         String[] tmpDate = date.split("T");
         tmpDate[1] = tmpDate[1].replaceAll("Z", "");
         return tmpDate;

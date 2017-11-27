@@ -41,7 +41,6 @@
             android:orientation="vertical" />
     </android.support.v4.widget.SwipeRefreshLayout>
 
-
     <!-- Empty view is only visible when the list has no items. -->
     <TextView
         android:id="@+id/empty_view"

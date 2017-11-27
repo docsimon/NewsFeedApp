@@ -43,6 +43,13 @@ public class NewsAdapter extends ArrayAdapter<News> {
         TextView newsTitle = (TextView) callingListView.findViewById(R.id.newsTitle);
         newsTitle.setText((news.getTitle()));
 
+        // reference to the newsContributors textview
+        TextView newsContributors = (TextView) callingListView.findViewById(R.id.newsContributors);
+        newsContributors.setText((news.getContributors()));
+        if (news.getContributors() == "") {
+            newsContributors.setVisibility(View.GONE);
+        }
+
         // get the date array which contains date at index [0] and time at index [1]
         String[] newsDate = Utils.formatDate(news.getDate());
 

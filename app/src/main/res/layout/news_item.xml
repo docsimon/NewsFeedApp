@@ -24,6 +24,15 @@
         android:textSize="20sp"
         tools:text="Southampton v Everton: Premier League â€“ live updates!" />
     <TextView
+        android:id="@+id/newsContributors"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="@color/colorContributors"
+        android:ellipsize="end"
+        android:textSize="18sp"
+        tools:text="Sean Ingle" />
+    <TextView
         android:id="@+id/date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
