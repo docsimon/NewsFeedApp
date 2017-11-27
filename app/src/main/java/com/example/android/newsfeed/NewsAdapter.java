@@ -60,6 +60,7 @@ public class NewsAdapter extends ArrayAdapter<News> {
         // reference to the time
         TextView time = (TextView) callingListView.findViewById(R.id.time);
         time.setText(newsDate[1]);
+        time.setVisibility(View.GONE);
 
         return callingListView;
     }
