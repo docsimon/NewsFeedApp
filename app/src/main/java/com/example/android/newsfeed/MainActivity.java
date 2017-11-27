@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements LoaderCallbacks<L
     NewsAdapter newsAdapter;
     TextView emptyView;
     ProgressBar progressBar;
-    private static final String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?show-tags=contributor&api-key=***REMOVED***e417";
+    private static final String NEWS_REQUEST_URL = "https://content.guardianapis.com/search?show-tags=contributor&api-key=test";
     private String queryString = "";
     SwipeRefreshLayout swipeRefreshLayout;
 
